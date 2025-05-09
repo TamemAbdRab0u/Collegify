@@ -1,0 +1,225 @@
+﻿@model Collegify.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "";
+}
+
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #292929;
+        }
+
+        .login-container {
+            background: white;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+            height: 500px;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #1a1a1a;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #151717;
+            font-weight: 600;
+        }
+
+        .inputimp {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        .inputimp:focus {
+            outline: none;
+            border-color: #1877f2;
+            box-shadow: 0 0 0 2px #e7f3ff;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .check{
+            position: relative;
+            top: -1px;
+        }
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4a4a4a;
+            position: relative;
+            left: -65px;
+            top: 4px;
+            font-family: math;
+        }
+
+        .forgot-password {
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        .btn{
+            padding: 0.8em 1.8em;
+            position: relative;
+            overflow: hidden;
+            background-color: #303030;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 16px;
+            transition: .3s;
+            z-index: 1;
+            font-family: inherit;
+            color: #ffffff;
+            border-radius: 5px;
+            top: 10px;
+            left: -1%;
+            box-shadow: 0px 0px 0px 1px black;
+            border: none;
+            width: 106%;
+        }
+        .btn::before {
+        content: '';
+        width: 0;
+        height: 300%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0deg);
+        background: #5b5b5b;
+        transition: .3s ease;
+        display: block;
+        z-index: -1;
+        }       
+
+        .btn:hover::before {
+        width: 105%;
+        }
+
+        .btn:hover {
+        color: #fffdfd;
+        cursor: pointer;
+        }
+
+        .signup-text {
+            text-align: center;
+            margin-top: 20px;
+            color: #4a4a4a;
+        }
+
+        .end{
+            position: relative;
+            top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .end a{
+            width: 16%;
+            position: relative;
+            left: 40%;
+            text-decoration: none;
+            color: rgb(212, 2, 2);
+            font-family: system-ui;
+            font-weight: bold;  
+            animation: colors 3s linear 0s infinite;
+        }
+        .end a::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        top: 25px;
+        height: 2.5px;
+        background-color: #dd0000;
+        transition: width 0.2s ease-in-out;
+    }
+
+        .end a:hover::after {
+        width: 100%;
+    }
+        @@keyframes colors{
+            0% {
+            color: #000000;
+            }
+            25% {
+                color: #700606;
+            }
+            50% {
+                color: #db0000;
+            }
+            75% {
+                color: #700606;
+            }
+            100% {
+                color: #000000;
+            }
+        }
+    </style>
+
+<body>
+    <div class="login-container" id="login-container">
+        <h1>Login</h1>
+        <form asp-controller="Account" asp-action="SaveLogin">
+            <div class="form-group">
+                <label for="email">User Name</label>
+                <input class="inputimp" asp-for="@Model.UserName" placeholder="Enter your User Name">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="inputimp" asp-for="@Model.Password" placeholder="Enter your Password">
+            </div>
+
+            <div class="options">
+                <input class="check" type="checkbox" id="remember-me">
+                <label class="remember-me" asp-for="@Model.RememberMe" for="remember-me"> Remember me</label>
+                <a asp-controller="Account" asp-action="ForgetPassword" class="forgot-password">Forgot password?</a>
+            </div>
+
+            <button class="btn" type="submit">Let`s go →</button>
+
+        </form>
+
+        <div class="end">
+            <p class="signup-text">Don't have an account? </p>
+            <a asp-controller="Account" asp-action="Register">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>

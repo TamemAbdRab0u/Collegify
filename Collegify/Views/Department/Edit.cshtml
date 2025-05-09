@@ -1,0 +1,39 @@
+﻿@model Department
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-light" style="font-family:'Cambria Math'">Update Department</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body p-4">
+		<form method="post" asp-controller="Department" asp-action="Edit" asp-route-Id="@Model.Id">
+			<div class="border p-3">
+
+				<div class="form-floating py-2 col-12">
+					<input type="text" asp-for="DepartmentName" class="form-control border-0 shadow" />
+					<label class="ms-2">Department Name</label>
+					<span asp-validation-for="DepartmentName" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input type="text" asp-for="ManagerName" class="form-control border-0 shadow" />
+					<label class="ms-2">Manager Name</label>
+					<span asp-validation-for="ManagerName" class="text-danger"></span>
+				</div>
+
+				<div class="row pt-4">
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary" style="color:white;background-color:#213b56;width:150px">Update</button>
+					</div>
+					<div class="col-6 text-end">
+						<a asp-controller="Department" asp-action="Index" class="btn btn-outline-primary border" style="width:150px">Back</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>
