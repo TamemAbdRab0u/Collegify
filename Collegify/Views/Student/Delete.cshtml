@@ -1,0 +1,64 @@
+﻿@model Student
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-light" style="font-family:'Cambria Math'">Delete Student</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body p-4">
+		<form asp-controller="Student" asp-action="SaveDelete" asp-route-Id="@Model.Id">
+			<div class="border p-3">
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Name" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Student Name</label>
+					<span asp-validation-for="Name" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Email" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Email</label>
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="DateOfBirth" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Date Of Birth</label>
+					<span asp-validation-for="DateOfBirth" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Phone" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Phone</label>
+					<span asp-validation-for="Phone" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Address" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Address</label>
+					<span asp-validation-for="Address" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Year" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Year</label>
+					<span asp-validation-for="Year" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="DepartmentID" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">DepartmentID</label>
+					<span asp-validation-for="DepartmentID" class="text-danger"></span>
+				</div>
+
+				<div class="row pt-4">
+					<div class="col-6">
+						<button type="submit" class="btn btn-danger" style="color:#fff;background-color:#CA1929;width:150px">Delete</button>
+					</div>
+					<div class="col-6 text-end">
+						<a asp-controller="Student" asp-action="Index" class="btn btn-outline-primary border" style="width:150px">Back</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>

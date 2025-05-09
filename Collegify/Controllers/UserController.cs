@@ -1,15 +1,18 @@
 ﻿using Collegify.Models;
 using Microsoft.AspNetCore.Mvc;
+using Collegify.ViewModels;
 
 namespace Collegify.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserFactory _userFactory;
+        AppDbContext context;
 
-        public UserController()
+        public UserController(AppDbContext context)
         {
             _userFactory = new UserFactory();
+            this.context = context;
         }
 
         public IActionResult CreateUser(string role)

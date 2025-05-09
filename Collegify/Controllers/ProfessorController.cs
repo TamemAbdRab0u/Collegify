@@ -29,6 +29,7 @@ namespace Collegify.Controllers
         {
             context.Professors.Add(prof);
             context.SaveChanges();
+            TempData["success"] = "Professor Added Successfully";
             return RedirectToAction("Index");
         }
 
@@ -50,6 +51,7 @@ namespace Collegify.Controllers
             OldProf.DepartmentID = NewProf.DepartmentID;
 
             context.SaveChanges();
+            TempData["success"] = "Professor Edited Successfully";
             return RedirectToAction("Index");
         }
 
@@ -64,6 +66,7 @@ namespace Collegify.Controllers
 			Professor prof = context.Professors.FirstOrDefault(x => x.Id == Id);
             context.Professors.Remove(prof);
             context.SaveChanges();
+            TempData["success"] = "Professor Removed Successfully";
             return RedirectToAction("Index");
 		}
     }

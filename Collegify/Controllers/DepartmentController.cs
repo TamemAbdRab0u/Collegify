@@ -25,11 +25,12 @@ namespace Collegify.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult SaveAdd(Department Dept)
+		public IActionResult Add(Department Dept)
 		{
 			DeptRepo.Add(Dept);
 			DeptRepo.Save();
-			return RedirectToAction("Index");
+            TempData["success"] = "Deparmtent Added Successfully";
+            return RedirectToAction("Index");
 		}
 
 		[HttpGet]
@@ -44,7 +45,8 @@ namespace Collegify.Controllers
         {
             DeptRepo.Update(Dept);
 			DeptRepo.Save();
-			return RedirectToAction("Index");
+            TempData["success"] = "Department Edited Successfully";
+            return RedirectToAction("Index");
         }
 
 		[HttpGet]
@@ -60,7 +62,8 @@ namespace Collegify.Controllers
             Department Dept = DeptRepo.GetById(X => X.Id == Id);
             DeptRepo.Remove(Dept);
 			DeptRepo.Save();
-			return RedirectToAction("Index");
+            TempData["success"] = "Department Removed Successfully";
+            return RedirectToAction("Index");
 
 		}
     }
