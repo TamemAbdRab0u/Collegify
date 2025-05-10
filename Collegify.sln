@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collegify", "Collegify\Collegify.csproj", "{F291E509-4B5D-4202-93B2-A2F18341CE46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collegify", "Collegify\Collegify.csproj", "{F291E509-4B5D-4202-93B2-A2F18341CE46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CollegifyTest", "CollegifyTest\CollegifyTest.csproj", "{F683BBA7-65E4-4361-9DFF-8237E637752C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F291E509-4B5D-4202-93B2-A2F18341CE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F291E509-4B5D-4202-93B2-A2F18341CE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F291E509-4B5D-4202-93B2-A2F18341CE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F683BBA7-65E4-4361-9DFF-8237E637752C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F683BBA7-65E4-4361-9DFF-8237E637752C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F683BBA7-65E4-4361-9DFF-8237E637752C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F683BBA7-65E4-4361-9DFF-8237E637752C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
