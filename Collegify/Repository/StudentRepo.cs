@@ -1,5 +1,4 @@
-﻿
-using Collegify.Models;
+﻿using Collegify.Models;
 
 namespace Collegify.Repository
 {
@@ -20,7 +19,5 @@ namespace Collegify.Repository
 		{
 			context.SaveChanges();
 		}
-
-		
 	}
 }

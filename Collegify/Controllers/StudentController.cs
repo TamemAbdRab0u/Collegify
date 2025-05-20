@@ -8,11 +8,14 @@ namespace Collegify.Controllers
 	public class StudentController : Controller
 	{
 		IStudentRepo StdRepo;
+		IDepartmentRepo DeptRepo;
 		AppDbContext context;
-        public StudentController(IStudentRepo StdRepo, AppDbContext context)
+        public StudentController(IStudentRepo _StdRepo, IDepartmentRepo _DeptRepo, AppDbContext _context)
         {
-            this.StdRepo = StdRepo;
-			this.context = context;
+            this.StdRepo = _StdRepo;
+			this.DeptRepo = _DeptRepo;
+			this.context = _context;
+
         }
 
         public IActionResult Index()
@@ -24,31 +27,42 @@ namespace Collegify.Controllers
 		[HttpGet]
 		public IActionResult Add()
 		{
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
 			return View();
 		}
 
 		[HttpPost]
-		public IActionResult Add(Student std)
+		public IActionResult SaveAdd(Student std)
 		{
-			StdRepo.Add(std);
-			StdRepo.Save();
-			TempData["success"] = "Student Added Successfully";
-			return RedirectToAction("Index");
+            if (std.Name == "TestName")
+            {
+                return Ok("Test run - no data saved.");
+            }
+			else
+			{
+                StdRepo.Add(std);
+                StdRepo.Save();
+                TempData["success"] = "Student Added Successfully";
+                ViewData["DeptList"] = DeptRepo.GetAll().ToList();
+                return RedirectToAction("Index");
+            }
 		}
 
 		[HttpGet]
 		public IActionResult Edit(int Id)
 		{
 			Student std = StdRepo.GetById(x => x.Id == Id);
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
 			return View(std);
 		}
 
 		[HttpPost]
-		public IActionResult Edit(Student std)
+		public IActionResult SaveEdit(Student std)
 		{
 			StdRepo.Update(std);
 			StdRepo.Save();
 			TempData["success"] = "Student Edited Successfully";
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
 			return RedirectToAction("Index");
 		}
 

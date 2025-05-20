@@ -59,7 +59,7 @@ namespace CollegifyTest
 
             var category = new Department { Id = 1, DepartmentName = "Test Category" };
 
-            var result = controller.Add(category) as RedirectToActionResult;
+            var result = controller.SaveAdd(category) as RedirectToActionResult;
 
             Assert.NotNull(result);
             Assert.Equal("Index", result.ActionName);
@@ -79,7 +79,7 @@ namespace CollegifyTest
 
             var category = new Department { Id = 1, DepartmentName = "Updated Category" };
 
-            var result = controller.Edit(category) as RedirectToActionResult;
+            var result = controller.SaveEdit(category) as RedirectToActionResult;
 
             Assert.NotNull(result);
             Assert.Equal("Index", result.ActionName);

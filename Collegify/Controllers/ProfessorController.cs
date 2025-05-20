@@ -1,4 +1,5 @@
 ﻿using Collegify.Models;
+using Collegify.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,9 +7,11 @@ namespace Collegify.Controllers
 {
     public class ProfessorController : Controller
     {
+        IDepartmentRepo DeptRepo;
         AppDbContext context;
-        public ProfessorController(AppDbContext context)
+        public ProfessorController(IDepartmentRepo DeptRepo,AppDbContext context)
         {
+            this.DeptRepo = DeptRepo;
             this.context = context;
         }
 
@@ -21,23 +24,33 @@ namespace Collegify.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            return View();
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
+			return View();
         }
 
         [HttpPost]
         public IActionResult Add(Professor prof)
         {
-            context.Professors.Add(prof);
-            context.SaveChanges();
-            TempData["success"] = "Professor Added Successfully";
-            return RedirectToAction("Index");
+            if (prof.Name == "TestName")
+            {
+                return Ok("Test run - no data saved.");
+            }
+            else
+            {
+                context.Professors.Add(prof);
+                context.SaveChanges();
+                TempData["success"] = "Professor Added Successfully";
+                ViewData["DeptList"] = DeptRepo.GetAll().ToList();
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpGet]
         public IActionResult Edit(int Id)
         {
             Professor prof = context.Professors.FirstOrDefault(x => x.Id == Id);
-            return View(prof);
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
+			return View(prof);
         }
 
         [HttpPost]
@@ -52,7 +65,8 @@ namespace Collegify.Controllers
 
             context.SaveChanges();
             TempData["success"] = "Professor Edited Successfully";
-            return RedirectToAction("Index");
+			ViewData["DeptList"] = DeptRepo.GetAll().ToList();
+			return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int Id)

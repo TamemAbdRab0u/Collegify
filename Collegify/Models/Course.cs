@@ -4,7 +4,7 @@
         {
             public int Id { get; set; } // Primary Key
             public string CourseName { get; set; }
-            public int Credits { get; set; }
+            public string Credits { get; set; }
 
             // Foreign Keys
             public int DepartmentID { get; set; }

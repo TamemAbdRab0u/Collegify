@@ -1,4 +1,4 @@
-﻿@model List<Student>
+﻿@model List<Fee>
 
 <div class="card shadow border-0 mt-4" id="Original">
 	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
@@ -14,7 +14,7 @@
 			<div class="col-6">
 			</div>
 			<div class="col-6 text-end">
-				<a asp-controller="Student" asp-action="Add" class="btn" style="color:white;background-color:#213b56;font-size:15px">
+				<a asp-controller="Fee" asp-action="Add" class="btn" style="color:white;background-color:#213b56;font-size:15px">
 					<i class="bi bi-plus-circle"></i> Create
 				</a>
 			</div>
@@ -23,13 +23,9 @@
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Date Of Birth</th>
-					<th>Phone</th>
-					<th>Addres</th>
-					<th>Year</th>
-					<th>Department</th>
+					<th>Student Name</th>
+					<th>Amount</th>
+					<th>Status</th>
 				</tr>
 			</thead>
 
@@ -37,20 +33,21 @@
 				@foreach (var item in Model)
 				{
 					<tr>
-						<td>@item.Name</td>
-						<td>@item.Email</td>
-						<td>@item.DateOfBirth</td>
-						<td>@item.Phone</td>
-						<td>@item.Address</td>
-						<td>@item.Year</td>
-						<td>@item.Department.DepartmentName</td>
+						<td>@item.Student.Name</td>
+						<td>@item.Amount</td>
+						<td>@item.Status</td>
 						<td style="width:155px;">
-							<a asp-controller="Student" asp-action="Edit" asp-route-Id="@item.Id" class="btn rounded-1" style="color:white;background-color:#213b56;">
+							<a asp-controller="Fee" asp-action="Pay" asp-route-Id="@item.Id" class="btn rounded-1" style="color:white;background-color:#213b56;">
+								<i class="bi bi-coin"></i> Pay
+							</a>
+						</td>
+						<td style="width:155px;">
+							<a asp-controller="Fee" asp-action="Edit" asp-route-Id="@item.Id" class="btn rounded-1" style="color:white;background-color:#213b56;">
 								<i class="bi bi-pencil-square"></i> Edit
 							</a>
 						</td>
 						<td style="width:175px;">
-							<a asp-controller="Student" asp-action="Delete" asp-route-Id="@item.Id" class="btn rounded-1" style="color:#fff;background-color:#CA1929;border-color:#CA1929;">
+							<a asp-controller="Fee" asp-action="Delete" asp-route-Id="@item.Id" class="btn rounded-1" style="color:#fff;background-color:#CA1929;border-color:#CA1929;">
 								<i class="bi bi-trash"></i> Delete
 							</a>
 						</td>

@@ -1,4 +1,7 @@
 ﻿@model Student
+@{
+	SelectList deptoptions = new SelectList(ViewBag.DeptList, "Id", "DepartmentName");
+}
 
 <div class="card shadow border-0 mt-4">
 	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
@@ -10,7 +13,7 @@
 	</div>
 
 	<div class="card-body p-4">
-		<form method="post" class="row">
+		<form method="post" asp-controller="Student" asp-action="SaveAdd" class="row">
 			<div class="border p-3">
 
 				<div class="form-floating py-2 col-12">
@@ -43,9 +46,11 @@
 					<label class="ms-2">Year</label>
 					<span asp-validation-for="Year" class="text-danger"></span>
 				</div>
-				<div class="form-floating py-2 col-12">
-					<input asp-for="DepartmentID" class="form-control border-0 shadow" />
-					<label class="ms-2">DepartmentID</label>
+				<div>
+					<label>Department</label>
+					<select asp-for="DepartmentID" asp-items="deptoptions" class="form form-control">
+						<option value="0">--Select Department--</option>
+					</select>
 					<span asp-validation-for="DepartmentID" class="text-danger"></span>
 				</div>
 

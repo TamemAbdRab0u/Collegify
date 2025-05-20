@@ -4,6 +4,7 @@ using Collegify.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Collegify.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250511090503_EditGradeTable")]
+    partial class EditGradeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -128,9 +131,8 @@ namespace Collegify.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Credits")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Credits")
+                        .HasColumnType("int");
 
                     b.Property<int>("DepartmentID")
                         .HasColumnType("int");
@@ -238,7 +240,7 @@ namespace Collegify.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("EnrollmentID")
+                    b.Property<int>("EnrollmentID")
                         .HasColumnType("int");
 
                     b.Property<string>("ExamDate")
@@ -249,10 +251,6 @@ namespace Collegify.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StudentName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Year")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -520,7 +518,9 @@ namespace Collegify.Migrations
                 {
                     b.HasOne("Collegify.Models.Enrollment", "Enrollment")
                         .WithMany("Grades")
-                        .HasForeignKey("EnrollmentID");
+                        .HasForeignKey("EnrollmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Enrollment");
                 });

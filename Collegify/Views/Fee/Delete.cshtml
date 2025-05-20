@@ -1,0 +1,53 @@
+﻿@model Fee
+@{
+	SelectList stdoptions = new SelectList(ViewBag.StdList, "Id", "Name");
+}
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-light" style="font-family:'Cambria Math'">delete Student</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body p-4">
+		<form method="post" asp-controller="Fee" asp-action="SaveDelete" asp-route-Id="@Model.Id" class="row">
+			<div class="border p-3">
+				<div>
+					<div>
+						<label>Student Name</label>
+						<select asp-for="StudentID" disabled asp-items="stdoptions" class="form form-control">
+							<option value="0">--Select Student--</option>
+						</select>
+						<span asp-validation-for="StudentID" class="text-danger"></span>
+					</div>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Amount" disabled class="form-control border-0 shadow" />
+					<label class="ms-2">Amount</label>
+					<span asp-validation-for="Amount" class="text-danger"></span>
+				</div>
+				<div>
+					<label>Student Name</label>
+					<select asp-for="Status" disabled class="form form-control">
+						<option>Paid</option>
+						<option>Not Paid</option>
+					</select>
+					<span asp-validation-for="Status" class="text-danger"></span>
+				</div>
+
+				<div class="row pt-4">
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary" style="color:#fff;background-color:#CA1929;width:150px">Delete</button>
+					</div>
+					<div class="col-6 text-end">
+						<a asp-controller="Fee" asp-action="Index" class="btn btn-outline-primary border" style="width:150px">Back</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+﻿@model Grade
+
+<div class="card shadow border-0 mt-4">
+	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h2 class="text-light" style="font-family:'Cambria Math'">Edit Grade</h2>
+			</div>
+		</div>
+	</div>
+
+	<div class="card-body p-4">
+		<form method="post" class="row">
+			<div class="border p-3">
+
+				<div class="form-floating py-2 col-12">
+					<input asp-for="StudentName" class="form-control border-0 shadow" />
+					<label class="ms-2">Student Name</label>
+					<span asp-validation-for="StudentName" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="Year" class="form-control border-0 shadow" />
+					<label class="ms-2">Year</label>
+					<span asp-validation-for="Year" class="text-danger"></span>
+				</div>
+				<div class="form-floating py-2 col-12">
+					<input asp-for="GradeValue" class="form-control border-0 shadow" />
+					<label class="ms-2">Grade Value</label>
+					<span asp-validation-for="GradeValue" class="text-danger"></span>
+				</div>
+				<div>
+					<label>Degree</label>
+					<select asp-for="Degree" class="form form-control">
+						<option>Excellent</option>
+						<option>Very Good</option>
+						<option>Good</option>
+						<option>Less than good</option>
+					</select>
+					<span asp-validation-for="Degree" class="text-danger"></span>
+				</div>
+
+				<div class="row pt-4">
+					<div class="col-6">
+						<button type="submit" class="btn btn-primary" style="color:white;background-color:#213b56;width:150px">Edit</button>
+					</div>
+					<div class="col-6 text-end">
+						<a asp-controller="Grade" asp-action="Index" class="btn btn-outline-primary border" style="width:150px">Back</a>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+</div>

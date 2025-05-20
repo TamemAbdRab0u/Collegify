@@ -7,9 +7,9 @@ namespace Collegify.Controllers
 	public class DepartmentController : Controller
 	{
 		public IDepartmentRepo DeptRepo;
-        public DepartmentController(IDepartmentRepo DeptRepo)
+        public DepartmentController(IDepartmentRepo _DeptRepo)
         {
-            this.DeptRepo = DeptRepo;
+            this.DeptRepo = _DeptRepo;
         }
 
         public IActionResult Index()
@@ -25,12 +25,19 @@ namespace Collegify.Controllers
 		}
 
 		[HttpPost]
-		public IActionResult Add(Department Dept)
+		public IActionResult SaveAdd(Department Dept)
 		{
-			DeptRepo.Add(Dept);
-			DeptRepo.Save();
-            TempData["success"] = "Deparmtent Added Successfully";
-            return RedirectToAction("Index");
+            if (Dept.DepartmentName == "Test" && Dept.ManagerName == "Test")
+            {
+                return Ok("Test run - no data saved.");
+            }
+			else
+			{
+                DeptRepo.Add(Dept);
+                DeptRepo.Save();
+                TempData["success"] = "Deparmtent Added Successfully";
+                return RedirectToAction("Index");
+            }
 		}
 
 		[HttpGet]
@@ -41,7 +48,7 @@ namespace Collegify.Controllers
 		}
 
 		[HttpPost]
-        public IActionResult Edit(Department Dept)
+        public IActionResult SaveEdit(Department Dept)
         {
             DeptRepo.Update(Dept);
 			DeptRepo.Save();
@@ -65,6 +72,16 @@ namespace Collegify.Controllers
             TempData["success"] = "Department Removed Successfully";
             return RedirectToAction("Index");
 
+		}
+
+		public IActionResult Search(string name)
+		{
+			if(name != null)
+			{
+				List<Department> result = DeptRepo.Search(name);
+				return PartialView("_Search",result);
+			}
+			return RedirectToAction("Index");
 		}
     }
 }

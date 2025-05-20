@@ -1,4 +1,5 @@
 ﻿using Collegify.Models;
+using System.Numerics;
 
 namespace Collegify.Repository
 {
@@ -18,6 +19,12 @@ namespace Collegify.Repository
         public void Save()
 		{
 			context.SaveChanges();
+		}
+
+		public List<Department> Search(string name)
+		{
+			List<Department> result = context.Departments.Where(x => x.DepartmentName.StartsWith(name)).ToList();
+			return result;
 		}
 	}
 }

@@ -23,9 +23,12 @@ namespace Collegify
 			// Register //
 			builder.Services.AddScoped<IDepartmentRepo, DepartmentRepo>();
 			builder.Services.AddScoped<IStudentRepo, StudentRepo>();
+			builder.Services.AddScoped<IGradeRepo, GradeRepo>();
+			builder.Services.AddScoped<ICourseRepo, CourseRepo>();
+			builder.Services.AddScoped<IFeeRepo, FeeRepo>();
 
 
-			builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(option =>
             {
                 option.Password.RequiredLength = 4;
                 option.Password.RequireNonAlphanumeric = false;

@@ -1,16 +1,7 @@
 ﻿@model List<Department>
 
-<!--Start Search-->
-	<form id="searchForm" class="search-container">
-		<input type="text" name="name" id="search" placeholder="Search..." autocomplete="off" />
-		<button type="submit">Search</button>
-	</form>
 
-
-	<div id="searchResults"></div>
-<!--End Search-->
-
-<div class="card shadow border-0 mt-4" id="Original">
+<div class="card shadow border-0 mt-4">
 	<div class="card-header bg-gradient ml-0 py-3" style="background-color:rgba(22, 34, 57, 0.95);">
 		<div class="row">
 			<div class="col-12 text-center">
@@ -62,44 +53,3 @@
 		</table>
 	</div>
 </div>
-
-
-
-
-
-
-
-
-
-
-<script src="~/lib/jquery/dist/jquery.js"></script>
-<script>
-	$(document).ready(function () {
-		$("#searchForm").on("submit", function (e) {
-			e.preventDefault();
-		});
-
-		$("#search").on("keyup", function () {
-			var searchQuery = $(this).val();
-
-			if (searchQuery.length > 0) {
-				$("#Original").hide();
-
-				$.ajax({
-					url: '/Department/Search',
-					type: 'GET',
-					data: { name: searchQuery },
-					success: function (response) {
-						$("#searchResults").html(response);
-					},
-					error: function () {
-						$("#searchResults").html("<p style='color:red;'>Error fetching search results.</p>");
-					}
-				});
-			} else {
-				$("#searchResults").html("");
-				$("#Original").show();
-			}
-		});
-	});
-</script>
